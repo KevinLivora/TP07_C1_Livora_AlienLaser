@@ -7,5 +7,10 @@ public class PlayerDataSo : ScriptableObject
     public float jumpForce = 15f;
     public float gravityScale = 4f;
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode shootKey = KeyCode.Mouse0;
+    public float bulletDamage = 25f;
+    public float bulletSpeed = 14f;
+    public float bulletLifeTime = 2f;
+    public float fireCooldown = 0.35f;
     public float invincibilityDuration = 5f;
 }

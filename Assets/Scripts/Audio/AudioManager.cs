@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [Header("Sfx Clips")]
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip landClip;
+    [SerializeField] private AudioClip shootClip;
     [SerializeField] private AudioClip coinClip;
     [SerializeField] private AudioClip starClip;
     [SerializeField] private AudioClip extraLifeClip;
@@ -45,19 +46,27 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic() => musicSource.Stop();
 
-    public void PlayJump() => sfxSource.PlayOneShot(jumpClip);
+    public void PlayJump() => PlaySfx(jumpClip);
 
-    public void PlayLand() => sfxSource.PlayOneShot(landClip);
+    public void PlayLand() => PlaySfx(landClip);
 
-    public void PlayCoin() => sfxSource.PlayOneShot(coinClip);
+    public void PlayShoot() => PlaySfx(shootClip);
 
-    public void PlayStar() => sfxSource.PlayOneShot(starClip);
+    public void PlayCoin() => PlaySfx(coinClip);
 
-    public void PlayExtraLife() => sfxSource.PlayOneShot(extraLifeClip);
+    public void PlayStar() => PlaySfx(starClip);
 
-    public void PlayLifeLost() => sfxSource.PlayOneShot(lifeLostClip);
+    public void PlayExtraLife() => PlaySfx(extraLifeClip);
 
-    public void PlayGameOver() => sfxSource.PlayOneShot(gameOverClip);
+    public void PlayLifeLost() => PlaySfx(lifeLostClip);
+
+    public void PlayGameOver() => PlaySfx(gameOverClip);
 
     public void PlayClick() => uiSource.PlayOneShot(clickClip);
+
+    private void PlaySfx(AudioClip clip)
+    {
+        if (clip != null)
+            sfxSource.PlayOneShot(clip);
+    }
 }
