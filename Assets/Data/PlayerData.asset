@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7630d57fb63454bb2dd105a33d7b57, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataSo
+  moveSpeed: 6
   jumpForce: 15
   gravityScale: 4
   jumpKey: 32
+  shootKey: 323
+  bulletDamage: 25
+  bulletSpeed: 14
+  bulletLifeTime: 2
+  fireCooldown: 0.35
+  invincibilityDuration: 5
