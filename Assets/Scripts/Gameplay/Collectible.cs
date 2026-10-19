@@ -32,6 +32,15 @@ public class Collectible : MonoBehaviour
                 GameManager.Instance.AddLife();
                 AudioManager.Instance.PlayExtraLife();
                 break;
+
+            case CollectibleType.PowerShot:
+                player.GetComponent<PlayerPowerUps>().ActivatePowerShot();
+                AudioManager.Instance.PlayStar();
+                break;
+
+            case CollectibleType.Key:
+                GameManager.Instance.AddKey();
+                break;
         }
     }
 }

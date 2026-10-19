@@ -4,58 +4,47 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("References")]
+    [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private GameplayHud hud;
-
-    [Header("World Speed")]
-    [SerializeField] private float initialSpeed = 7f;
-    [SerializeField] private float maxSpeed = 16f;
-    [SerializeField] private float acceleration = 0.1f;
-
-    [Header("Lives")]
-    [SerializeField] private int startingLives = 0;
-    [SerializeField] private int maxLives = 3;
+    [SerializeField] private Door door;
+    [SerializeField] private int keysRequired = 3;
 
     private const string BestScoreKey = "BestScore";
 
-    private float score;
-    private int lastShownScore = -1;
-    private int lives;
+    private int score;
+    private int keys;
 
     public bool IsPlaying { get; private set; }
-    public float WorldSpeed { get; private set; }
 
     private void Awake()
     {
         Instance = this;
         IsPlaying = true;
-        WorldSpeed = initialSpeed;
-        lives = startingLives;
-        hud.SetLives(lives);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (!IsPlaying)
-            return;
-
-        WorldSpeed = Mathf.Min(WorldSpeed + acceleration * Time.deltaTime, maxSpeed);
-        score += WorldSpeed * Time.deltaTime;
-
-        int currentScore = Mathf.FloorToInt(score);
-        if (currentScore == lastShownScore)
-            return;
-
-        lastShownScore = currentScore;
-        hud.SetScore(currentScore);
+        playerHealth.Died += HandlePlayerDied;
     }
 
-    public void AddScore(float amount)
+    private void OnDisable()
+    {
+        playerHealth.Died -= HandlePlayerDied;
+    }
+
+    private void Start()
+    {
+        hud.SetScore(score);
+        hud.SetKeys(keys, keysRequired);
+    }
+
+    public void AddScore(int amount)
     {
         if (!IsPlaying)
             return;
 
         score += amount;
+        hud.SetScore(score);
     }
 
     public void AddLife()
@@ -63,39 +52,52 @@ public class GameManager : MonoBehaviour
         if (!IsPlaying)
             return;
 
-        lives = Mathf.Clamp(lives + 1, 0, maxLives);
-        hud.SetLives(lives);
+        playerHealth.Heal(1);
     }
 
-    public void HandlePlayerHit(PlayerPowerUps playerPowerUps)
+    public void AddKey()
     {
         if (!IsPlaying)
             return;
 
-        if (lives > 0)
-        {
-            lives--;
-            hud.SetLives(lives);
-            playerPowerUps.ActivateInvincibility();
-            AudioManager.Instance.PlayLifeLost();
-            return;
-        }
+        keys++;
+        hud.SetKeys(keys, keysRequired);
+        AudioManager.Instance.PlayKey();
 
-        EndGame();
+        if (keys >= keysRequired)
+            door.Open();
     }
 
-    private void EndGame()
+    public void Win()
+    {
+        if (!IsPlaying)
+            return;
+
+        EndGame(true);
+    }
+
+    private void HandlePlayerDied()
+    {
+        EndGame(false);
+    }
+
+    private void EndGame(bool won)
     {
         IsPlaying = false;
 
-        int finalScore = Mathf.FloorToInt(score);
-        int bestScore = Mathf.Max(PlayerPrefs.GetInt(BestScoreKey, 0), finalScore);
+        int bestScore = Mathf.Max(PlayerPrefs.GetInt(BestScoreKey, 0), score);
         PlayerPrefs.SetInt(BestScoreKey, bestScore);
         PlayerPrefs.Save();
 
         AudioManager.Instance.StopMusic();
-        AudioManager.Instance.PlayGameOver();
 
-        hud.ShowGameOver(finalScore, bestScore);
+        if (won)
+            AudioManager.Instance.PlayWin();
+        else
+            AudioManager.Instance.PlayGameOver();
+
+        hud.ShowResult(won, score, bestScore);
+
+        Time.timeScale = 0f;
     }
 }

@@ -2,5 +2,7 @@ public enum CollectibleType
 {
     Coin,
     Star,
-    ExtraLife
+    ExtraLife,
+    PowerShot,
+    Key
 }

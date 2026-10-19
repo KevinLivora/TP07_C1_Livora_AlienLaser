@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(data.jumpKey))

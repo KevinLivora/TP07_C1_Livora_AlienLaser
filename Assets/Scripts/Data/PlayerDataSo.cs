@@ -13,4 +13,8 @@ public class PlayerDataSo : ScriptableObject
     public float bulletLifeTime = 2f;
     public float fireCooldown = 0.35f;
     public float invincibilityDuration = 5f;
+    public int maxHealth = 3;
+    public float hitProtectionDuration = 1.5f;
+    public float powerShotDuration = 8f;
+    public float powerShotDamage = 1000f;
 }

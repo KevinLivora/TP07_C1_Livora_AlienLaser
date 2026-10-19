@@ -9,15 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341070465687562205}
-  - component: {fileID: 889807561911498148}
-  - component: {fileID: 2973158231200504757}
-  - component: {fileID: 7976178620200423414}
   - component: {fileID: 3881107386760081959}
   - component: {fileID: 1480620836959385238}
   - component: {fileID: 792691548890469987}
   - component: {fileID: 2856345449609872373}
   m_Layer: 0
-  m_Name: Obstacle SawHalf
+  m_Name: Hazard SawHalf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,43 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &889807561911498148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744158416878459148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b631ad53b661a34ab59adda38fe1777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameplayAnimator
---- !u!114 &2973158231200504757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744158416878459148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4745855a09bca3241bb44eb800e4afd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Obstacle
---- !u!114 &7976178620200423414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4744158416878459148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992167a95195c27448db3ddc3c23bf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorldMover
-  despawnX: -12
 --- !u!212 &3881107386760081959
 SpriteRenderer:
   serializedVersion: 2

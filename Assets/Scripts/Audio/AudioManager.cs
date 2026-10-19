@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip extraLifeClip;
     [SerializeField] private AudioClip lifeLostClip;
     [SerializeField] private AudioClip gameOverClip;
+    [SerializeField] private AudioClip keyClip;
+    [SerializeField] private AudioClip winClip;
 
     [Header("Ui Clips")]
     [SerializeField] private AudioClip clickClip;
@@ -64,6 +66,10 @@ public class AudioManager : MonoBehaviour
     public void PlayLifeLost() => PlaySfx(lifeLostClip);
 
     public void PlayGameOver() => PlaySfx(gameOverClip);
+
+    public void PlayKey() => PlaySfx(keyClip);
+
+    public void PlayWin() => PlaySfx(winClip);
 
     public void PlayClick() => uiSource.PlayOneShot(clickClip);
 

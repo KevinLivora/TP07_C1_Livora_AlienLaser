@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 586d4dc887482d448af934034c78ddf1, type: 3}
-  m_Name: EnemyData
+  m_Name: SlimeData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSo
   maxHealth: 100
   moveSpeed: 1.5

@@ -5,19 +5,26 @@ using UnityEngine.UI;
 
 public class GameplayHud : MonoBehaviour
 {
-    [Header("Score")]
-    [SerializeField] private TMP_Text scoreText;
+    [Header("Player")]
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerPowerUps playerPowerUps;
 
-    [Header("Lives")]
-    [SerializeField] private TMP_Text livesText;
+    [Header("Texts")]
+    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text healthText;
+
+    [Header("Keys")]
+    [SerializeField] private Image[] keyIcons;
+    [SerializeField] private Sprite keyFullSprite;
+    [SerializeField] private Sprite keyEmptySprite;
 
     [Header("Invincibility")]
-    [SerializeField] private PlayerPowerUps playerPowerUps;
     [SerializeField] private GameObject invincibilityPanel;
     [SerializeField] private TMP_Text invincibilityText;
 
-    [Header("Game Over")]
-    [SerializeField] private GameObject gameOverPanel;
+    [Header("Result")]
+    [SerializeField] private GameObject resultPanel;
+    [SerializeField] private TMP_Text resultTitleText;
     [SerializeField] private TMP_Text finalScoreText;
     [SerializeField] private TMP_Text bestScoreText;
     [SerializeField] private Button btnRetry;
@@ -30,8 +37,18 @@ public class GameplayHud : MonoBehaviour
         btnRetry.onClick.AddListener(OnRetryClicked);
         btnMenu.onClick.AddListener(OnMenuClicked);
 
-        gameOverPanel.SetActive(false);
+        resultPanel.SetActive(false);
         invincibilityPanel.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        playerHealth.HealthChanged += SetHealth;
+    }
+
+    private void OnDisable()
+    {
+        playerHealth.HealthChanged -= SetHealth;
     }
 
     private void OnDestroy()
@@ -57,25 +74,37 @@ public class GameplayHud : MonoBehaviour
         scoreText.text = $"Score: {score}";
     }
 
-    public void SetLives(int lives)
+    public void SetKeys(int collected, int required)
     {
-        livesText.text = $"Lives: {lives}";
+        for (int i = 0; i < keyIcons.Length; i++)
+        {
+            keyIcons[i].gameObject.SetActive(i < required);
+            keyIcons[i].sprite = i < collected ? keyFullSprite : keyEmptySprite;
+        }
     }
 
-    public void ShowGameOver(int finalScore, int bestScore)
+    public void ShowResult(bool won, int finalScore, int bestScore)
     {
+        resultTitleText.text = won ? "YOU WIN!" : "GAME OVER";
         finalScoreText.text = $"Score: {finalScore}";
         bestScoreText.text = $"Best: {bestScore}";
-        gameOverPanel.SetActive(true);
+        resultPanel.SetActive(true);
+    }
+
+    private void SetHealth(int current, int max)
+    {
+        healthText.text = $"Health: {current}/{max}";
     }
 
     private void OnRetryClicked()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnMenuClicked()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(MainMenuScene);
     }
 }
