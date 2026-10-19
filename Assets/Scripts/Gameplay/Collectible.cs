@@ -3,7 +3,6 @@ using UnityEngine;
 public class Collectible : MonoBehaviour
 {
     [SerializeField] private CollectibleType type;
-    [SerializeField] private int coinValue = 10;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,7 +18,6 @@ public class Collectible : MonoBehaviour
         switch (type)
         {
             case CollectibleType.Coin:
-                GameManager.Instance.AddScore(coinValue);
                 AudioManager.Instance.PlayCoin();
                 break;
 

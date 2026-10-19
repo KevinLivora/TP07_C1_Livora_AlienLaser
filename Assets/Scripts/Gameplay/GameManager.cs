@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Door door;
     [SerializeField] private int keysRequired = 3;
 
-    private const string BestScoreKey = "BestScore";
-
-    private int score;
     private int keys;
 
     public bool IsPlaying { get; private set; }
@@ -34,17 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        hud.SetScore(score);
         hud.SetKeys(keys, keysRequired);
-    }
-
-    public void AddScore(int amount)
-    {
-        if (!IsPlaying)
-            return;
-
-        score += amount;
-        hud.SetScore(score);
     }
 
     public void AddLife()
@@ -85,10 +72,6 @@ public class GameManager : MonoBehaviour
     {
         IsPlaying = false;
 
-        int bestScore = Mathf.Max(PlayerPrefs.GetInt(BestScoreKey, 0), score);
-        PlayerPrefs.SetInt(BestScoreKey, bestScore);
-        PlayerPrefs.Save();
-
         AudioManager.Instance.StopMusic();
 
         if (won)
@@ -96,7 +79,7 @@ public class GameManager : MonoBehaviour
         else
             AudioManager.Instance.PlayGameOver();
 
-        hud.ShowResult(won, score, bestScore);
+        hud.ShowResult(won);
 
         Time.timeScale = 0f;
     }

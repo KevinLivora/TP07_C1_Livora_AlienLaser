@@ -10,7 +10,6 @@ public class GameplayHud : MonoBehaviour
     [SerializeField] private PlayerPowerUps playerPowerUps;
 
     [Header("Texts")]
-    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text healthText;
 
     [Header("Keys")]
@@ -25,8 +24,6 @@ public class GameplayHud : MonoBehaviour
     [Header("Result")]
     [SerializeField] private GameObject resultPanel;
     [SerializeField] private TMP_Text resultTitleText;
-    [SerializeField] private TMP_Text finalScoreText;
-    [SerializeField] private TMP_Text bestScoreText;
     [SerializeField] private Button btnRetry;
     [SerializeField] private Button btnMenu;
 
@@ -69,11 +66,6 @@ public class GameplayHud : MonoBehaviour
         invincibilityText.text = $"Invincible: {remaining:F1}s";
     }
 
-    public void SetScore(int score)
-    {
-        scoreText.text = $"Score: {score}";
-    }
-
     public void SetKeys(int collected, int required)
     {
         for (int i = 0; i < keyIcons.Length; i++)
@@ -83,11 +75,9 @@ public class GameplayHud : MonoBehaviour
         }
     }
 
-    public void ShowResult(bool won, int finalScore, int bestScore)
+    public void ShowResult(bool won)
     {
         resultTitleText.text = won ? "YOU WIN!" : "GAME OVER";
-        finalScoreText.text = $"Score: {finalScore}";
-        bestScoreText.text = $"Best: {bestScore}";
         resultPanel.SetActive(true);
     }
 

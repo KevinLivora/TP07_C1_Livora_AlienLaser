@@ -4,30 +4,28 @@ using UnityEngine.UI;
 
 public class UiPauseMenuManager : MonoBehaviour
 {
-    [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject creditsPanel;
 
-    [Header("Pause Menu Buttons")]
     [SerializeField] private Button btnContinue;
     [SerializeField] private Button btnPauseSettings;
     [SerializeField] private Button btnPauseCredits;
     [SerializeField] private Button btnPauseQuit;
 
-    [Header("Back Buttons")]
     [SerializeField] private Button btnBackSettings;
     [SerializeField] private Button btnBackCredits;
 
-    private bool isPaused = false;
+    private const string MainMenuScene = "Main Menu";
+
+    private bool isPaused;
 
     private void Awake()
     {
-        btnContinue.onClick.AddListener(OnContinueClicked);
+        btnContinue.onClick.AddListener(Resume);
         btnPauseSettings.onClick.AddListener(() => OpenPanel(settingsPanel));
         btnPauseCredits.onClick.AddListener(() => OpenPanel(creditsPanel));
         btnPauseQuit.onClick.AddListener(OnQuitClicked);
-
         btnBackSettings.onClick.AddListener(CloseToPauseMenu);
         btnBackCredits.onClick.AddListener(CloseToPauseMenu);
     }
@@ -41,8 +39,16 @@ public class UiPauseMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            TogglePause();
+        if (!Input.GetKeyDown(KeyCode.Escape))
+            return;
+
+        if (!GameManager.Instance.IsPlaying)
+            return;
+
+        if (isPaused)
+            Resume();
+        else
+            Pause();
     }
 
     private void OnDestroy()
@@ -55,25 +61,26 @@ public class UiPauseMenuManager : MonoBehaviour
         btnBackCredits.onClick.RemoveAllListeners();
     }
 
-    private void OnQuitClicked()
+    private void Pause()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu");
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-
-    private void TogglePause()
-    {
-        isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0f : 1f;
-    }
-
-    private void OnContinueClicked()
+    private void Resume()
     {
         isPaused = false;
         pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    private void OnQuitClicked()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(MainMenuScene);
     }
 
     private void OpenPanel(GameObject panelToOpen)
