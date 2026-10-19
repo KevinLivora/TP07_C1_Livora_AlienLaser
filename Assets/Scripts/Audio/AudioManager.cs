@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip landClip;
     [SerializeField] private AudioClip shootClip;
+    [SerializeField] private AudioClip enemyKilledClip;
     [SerializeField] private AudioClip coinClip;
     [SerializeField] private AudioClip starClip;
     [SerializeField] private AudioClip extraLifeClip;
@@ -51,6 +52,8 @@ public class AudioManager : MonoBehaviour
     public void PlayLand() => PlaySfx(landClip);
 
     public void PlayShoot() => PlaySfx(shootClip);
+
+    public void PlayEnemyKilled() => PlaySfx(enemyKilledClip);
 
     public void PlayCoin() => PlaySfx(coinClip);
 
