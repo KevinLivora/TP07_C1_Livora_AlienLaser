@@ -21,6 +21,10 @@ public class GameplayHud : MonoBehaviour
     [SerializeField] private GameObject invincibilityPanel;
     [SerializeField] private TMP_Text invincibilityText;
 
+    [Header("Power Shot")]
+    [SerializeField] private GameObject powerShotPanel;
+    [SerializeField] private TMP_Text powerShotText;
+
     [Header("Result")]
     [SerializeField] private GameObject resultPanel;
     [SerializeField] private TMP_Text resultTitleText;
@@ -36,6 +40,7 @@ public class GameplayHud : MonoBehaviour
 
         resultPanel.SetActive(false);
         invincibilityPanel.SetActive(false);
+        powerShotPanel.SetActive(false);
     }
 
     private void OnEnable()
@@ -59,11 +64,20 @@ public class GameplayHud : MonoBehaviour
         bool isInvincible = playerPowerUps.IsInvincible;
         invincibilityPanel.SetActive(isInvincible);
 
-        if (!isInvincible)
-            return;
+        if (isInvincible)
+        {
+            float remaining = Mathf.Max(playerPowerUps.InvincibleTimer, 0f);
+            invincibilityText.text = $"Invincible: {remaining:F1}s";
+        }
 
-        float remaining = Mathf.Max(playerPowerUps.InvincibleTimer, 0f);
-        invincibilityText.text = $"Invincible: {remaining:F1}s";
+        bool hasPowerShot = playerPowerUps.HasPowerShot;
+        powerShotPanel.SetActive(hasPowerShot);
+
+        if (hasPowerShot)
+        {
+            float remaining = Mathf.Max(playerPowerUps.PowerShotTimer, 0f);
+            powerShotText.text = $"PowerUp: {remaining:F1}s";
+        }
     }
 
     public void SetKeys(int collected, int required)

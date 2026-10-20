@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6569456015875408696}
-  - component: {fileID: 2416247197917419401}
   - component: {fileID: 7688624594894855315}
   - component: {fileID: 9104467169882729602}
   m_Layer: 0
@@ -34,18 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 935507955353964820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2416247197917419401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6711551812021615904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b631ad53b661a34ab59adda38fe1777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameplayAnimator
 --- !u!212 &7688624594894855315
 SpriteRenderer:
   serializedVersion: 2
@@ -137,7 +124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 935507955353964820}
   - component: {fileID: 2494684137817465058}
-  - component: {fileID: 6196557706801645501}
   - component: {fileID: 7663112055445129161}
   - component: {fileID: 7312653956672208124}
   m_Layer: 0
@@ -176,20 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   type: 1
-  coinValue: 10
---- !u!114 &6196557706801645501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7058276345989808738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992167a95195c27448db3ddc3c23bf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WorldMover
-  despawnX: -12
 --- !u!50 &7663112055445129161
 Rigidbody2D:
   serializedVersion: 5
