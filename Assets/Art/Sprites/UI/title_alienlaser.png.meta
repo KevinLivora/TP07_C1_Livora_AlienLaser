@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: b435f52e8ae24664eac27fc0c50e02a2
+guid: 57c841ac4e374c14da05083a93b5c561
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4897835499633961412
-    second: title_alienrun_0
+      213: 5124062582670893382
+    second: title_alienlaser_0
   - first:
-      213: 2568476282546608320
-    second: title_alienrun_1
+      213: 7682341213702635319
+    second: title_alienlaser_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -142,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: title_alienrun_0
+      name: title_alienlaser_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 381
-        width: 855
-        height: 303
+        x: 350
+        y: 380
+        width: 727
+        height: 236
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +157,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c36150c1094670cb0800000000000000
-      internalID: -4897835499633961412
+      spriteID: 64128fe35c35c1740800000000000000
+      internalID: 5124062582670893382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: title_alienrun_1
+      name: title_alienlaser_1
       rect:
         serializedVersion: 2
-        x: 236
+        x: 85
         y: 8
-        width: 1104
-        height: 366
+        width: 1271
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c8d433129f05a320800000000000000
-      internalID: 2568476282546608320
+      spriteID: 73fb61e81a82d9a60800000000000000
+      internalID: 7682341213702635319
       vertices: []
       indices: 
       edges: []
@@ -199,8 +199,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      title_alienrun_0: -4897835499633961412
-      title_alienrun_1: 2568476282546608320
+      title_alienlaser_0: 5124062582670893382
+      title_alienlaser_1: 7682341213702635319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
