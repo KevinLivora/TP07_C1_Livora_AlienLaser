@@ -22,6 +22,8 @@ public class Collectible : MonoBehaviour
                 break;
 
             case CollectibleType.Star:
+                // Suggestion: GetComponent<PlayerPowerUps>() sin null check y repetido en dos cases.
+                // Resolvelo una sola vez con player.TryGetComponent(out PlayerPowerUps powerUps) antes del switch.
                 player.GetComponent<PlayerPowerUps>().ActivateInvincibility();
                 AudioManager.Instance.PlayStar();
                 break;

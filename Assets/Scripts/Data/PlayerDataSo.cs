@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Game/Player Data")]
 public class PlayerDataSo : ScriptableObject
 {
+    // Warning: Todos los campos son public y mutables desde cualquier clase; un PlayerController podría pisar moveSpeed y alterar el .asset en el editor.
+    // Usá [SerializeField] private y properties de solo lectura (public float MoveSpeed => moveSpeed;).
     public float moveSpeed = 6f;
     public float jumpForce = 15f;
     public float gravityScale = 4f;

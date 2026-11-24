@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         isDead = true;
 
+        // Suggestion: Si un prefab de enemigo queda sin deathEffect asignado, Instantiate tira excepción y el enemigo no se destruye. Agregá un null check.
         ParticleSystem effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         ParticleSystem.MainModule main = effect.main;
         Destroy(effect.gameObject, main.duration + main.startLifetime.constantMax);

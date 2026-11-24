@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Warning: Comparás un float con ==. Funciona porque asignás 0f exacto, pero es frágil.
+        // Preferí un estado explícito (por ejemplo GameManager.Instance.IsPlaying o un flag de pausa) en vez de leer Time.timeScale.
         if (Time.timeScale == 0f)
             return;
 
@@ -54,8 +56,12 @@ public class PlayerController : MonoBehaviour
     private void CheckGround()
     {
         bool wasGrounded = isGrounded;
+        // Warning: IsTouchingLayers devuelve true con cualquier contacto, incluso tocando el costado o el techo de una plataforma del groundLayer.
+        // Eso habilita saltar pegado a una pared. Usá un OverlapBox o Raycast hacia abajo desde los pies, o un ContactFilter2D con normal hacia arriba.
         isGrounded = bodyCollider.IsTouchingLayers(groundLayer);
 
+        // Bug: Solo se notifica cuando aterriza. Si el jugador cae de una plataforma caminando, nadie avisa que dejó el piso,
+        // así PlayerAnimator mantiene IsGrounded en true y no pasa a la animación de salto. Agregá un evento (o un else) para wasGrounded && !isGrounded.
         if (!wasGrounded && isGrounded)
             Landed?.Invoke();
     }

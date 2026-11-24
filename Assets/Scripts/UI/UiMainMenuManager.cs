@@ -21,6 +21,8 @@ public class UiMainMenuManager : MonoBehaviour
 
     private void OnPlayClick()
     {
+        // Warning: Nombre de escena como string mágico. En GameplayHud y UiPauseMenuManager usás const; acá no.
+        // Declaralo como const (o en una clase SceneNames como hiciste con GameTags).
         SceneManager.LoadScene("Gameplay");
     }
 

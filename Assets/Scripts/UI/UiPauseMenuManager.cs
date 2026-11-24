@@ -16,6 +16,7 @@ public class UiPauseMenuManager : MonoBehaviour
     [SerializeField] private Button btnBackSettings;
     [SerializeField] private Button btnBackCredits;
 
+    // Suggestion: La misma constante "Main Menu" está duplicada en GameplayHud.cs. Movela a una clase estática SceneNames, igual que GameTags.
     private const string MainMenuScene = "Main Menu";
 
     private bool isPaused;

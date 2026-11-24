@@ -61,6 +61,8 @@ public class GameplayHud : MonoBehaviour
 
     private void Update()
     {
+        // Suggestion: Update llama a SetActive y arma strings con interpolación en cada frame aunque nada cambie.
+        // Actualizá el texto solo cuando el valor mostrado cambia, o exponé eventos desde PlayerPowerUps.
         bool isInvincible = playerPowerUps.IsInvincible;
         invincibilityPanel.SetActive(isInvincible);
 

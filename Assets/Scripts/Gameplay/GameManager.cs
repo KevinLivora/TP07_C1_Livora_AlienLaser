@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Suggestion: El singleton se pisa sin chequear si ya existe otra instancia y Instance nunca se limpia en OnDestroy.
+        // Agregá el chequeo de duplicado (como en AudioManager) y en OnDestroy: if (Instance == this) Instance = null;
         Instance = this;
         IsPlaying = true;
     }

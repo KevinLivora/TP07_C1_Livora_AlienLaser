@@ -24,6 +24,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
+        // Warning: Mismo chequeo float == 0f que en PlayerController. Centralizá el estado de pausa en un lugar y consultalo.
         if (Time.timeScale == 0f)
             return;
 
